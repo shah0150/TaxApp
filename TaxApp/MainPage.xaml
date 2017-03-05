@@ -1,0 +1,184 @@
+﻿<Page
+    x:Class="TaxApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaxApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="359"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="purchaseAmountStackPanel.Orientation"
+                                Value="Vertical"/>
+                    </VisualState.Setters>
+                  
+                    
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="AppTitle" 
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Text="Tax Calculator"
+                   VerticalAlignment="Top"
+                   Margin="20,0,20,0" 
+                   Style="{StaticResource TitleTextBlockStyle}"/>
+        
+        <TextBlock Name="AppMessage" 
+                   HorizontalAlignment="Center"
+                   Grid.Row="1"
+                   Text="Enter Purchase Price"
+                   VerticalAlignment="Top"
+                   Margin="20,0,20,0" 
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   FontSize="30"/>
+
+        <StackPanel Name="mainStackPanel"
+                    Margin="20,0,20,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Grid.Row="2">
+
+            <StackPanel Name="purchaseAmountStackPanel"
+                        Orientation="Horizontal">
+
+                <TextBlock Name="purchaseAmountLabel"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Purchase Price"
+                           FontSize="24"/>
+
+                <TextBox Name="purchaseAmount"
+                         HorizontalAlignment="Left"
+                         InputScope="CurrencyAmount"
+                         VerticalAlignment="Top"
+                         GotFocus="purchaseAmount_GotFocus"
+                         LostFocus="purchaseAmount_LostFocus"
+                         TextChanged="purchaseAmount_TextChanged"
+                         FontSize="24"
+                         PlaceholderText="$0.00"
+                         Margin="20,0,0,0">
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Enter Purchase Amount"/>
+                    </ToolTipService.ToolTip>
+                </TextBox>
+            </StackPanel>
+
+            <TextBlock Name="taxTypeLabel"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Tax Type:"
+                           FontSize="24"
+                           Margin="0,20,0,0"/>
+
+            <RadioButton  Name="GSTRadioButton"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          FontSize="24"
+                          Content="GST 5%"
+                          Tag="0.05"
+                          Click="GSTRadioButton_Click">
+                <ToolTipService.ToolTip>
+                    <ToolTip Content="GST 5% Tax."/>
+                </ToolTipService.ToolTip>
+            </RadioButton>
+
+            <RadioButton  Name="PSTRadioButton"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          FontSize="24"
+                          Content="PST 8%"
+                          Tag="0.08"
+                          Click="GSTRadioButton_Click">
+                <ToolTipService.ToolTip>
+                    <ToolTip Content="PST 5% Tax."/>
+                </ToolTipService.ToolTip>
+            </RadioButton>
+
+
+            <RadioButton  Name="HSTRadioButton"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          FontSize="24"
+                          Content="HST 13%"
+                          Tag="0.13"
+                          Click="GSTRadioButton_Click">
+                <ToolTipService.ToolTip>
+                    <ToolTip Content="HST 5% Tax."/>
+                </ToolTipService.ToolTip>
+            </RadioButton>
+                          
+
+             <TextBlock Name="taxAmountLabel"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Tax Amount:"
+                           FontSize="24"
+                           Margin="0,10,0,0"/>
+
+            <TextBlock Name="taxAmount"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="$0.00"
+                           Foreground="Red"
+                           FontSize="36"
+                           Margin="0,20,0,0">
+                <ToolTipService.ToolTip>
+                    <ToolTip Content="Tax Amount"/>
+                </ToolTipService.ToolTip>
+            </TextBlock>
+
+            <TextBlock Name="totalAmountLabel"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Total Amount:"
+                           FontSize="24"
+                           Margin="0,20,0,0"/>
+
+            <TextBlock Name="totalAmount"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="$0.00"
+                           FontSize="24"
+                           Margin="0,20,0,0">
+                <ToolTipService.ToolTip>
+                    <ToolTip Content="Total Amount after Tax"/>
+                </ToolTipService.ToolTip>
+            </TextBlock>
+
+            <StackPanel Name="img" Opacity="1">
+                <Image x:Name="image" Height="100" Width="100" HorizontalAlignment="Center" Source="Assets/taxapp-bg.jpg"/>
+            </StackPanel>
+
+        </StackPanel>
+        <CommandBar Background="Transparent" IsOpen="False">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Click="AppBarButton_Click" Label="About me"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>
