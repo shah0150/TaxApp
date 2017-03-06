@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <VisualStateManager.VisualStateGroups>
@@ -39,7 +39,7 @@
             <RowDefinition Height=".1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        
         <TextBlock Name="AppTitle" 
                    HorizontalAlignment="Center"
                    Grid.Row="0"
@@ -163,6 +163,7 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Text="$0.00"
+                           Foreground="Red"
                            FontSize="24"
                            Margin="0,20,0,0">
                 <ToolTipService.ToolTip>
@@ -175,10 +176,13 @@
             </StackPanel>
 
         </StackPanel>
+
+    </Grid>
+    <Page.BottomAppBar>
         <CommandBar Background="Transparent" IsOpen="False">
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Setting" Click="AppBarButton_Click" Label="About me"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Grid>
+    </Page.BottomAppBar>
 </Page>
