@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--Adaptive UI -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="wideState">
@@ -20,26 +20,29 @@
                 <VisualState x:Name="narrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
+                        
                     </VisualState.StateTriggers>
-
+                    
                     <VisualState.Setters>
                         <Setter Target="purchaseAmountStackPanel.Orientation"
                                 Value="Vertical"/>
+                        <Setter Target="image.Visiblity" Value="Collapsed"/>
+                        <Setter Target="purchaseAmount.Margin" Value="40"/>
                     </VisualState.Setters>
-                  
-                    
+
+
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
-        
-        
+
+
+        <!--Grid Row Definations-->
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*"/>
             <RowDefinition Height=".1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <TextBlock Name="AppTitle" 
                    HorizontalAlignment="Center"
                    Grid.Row="0"
@@ -47,7 +50,7 @@
                    VerticalAlignment="Top"
                    Margin="20,0,20,0" 
                    Style="{StaticResource TitleTextBlockStyle}"/>
-        
+
         <TextBlock Name="AppMessage" 
                    HorizontalAlignment="Center"
                    Grid.Row="1"
@@ -131,9 +134,9 @@
                     <ToolTip Content="HST 5% Tax."/>
                 </ToolTipService.ToolTip>
             </RadioButton>
-                          
 
-             <TextBlock Name="taxAmountLabel"
+
+            <TextBlock Name="taxAmountLabel"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Text="Tax Amount:"
@@ -146,7 +149,7 @@
                            Text="$0.00"
                            Foreground="Red"
                            FontSize="36"
-                           Margin="0,20,0,0">
+                           Margin="0,10,0,0">
                 <ToolTipService.ToolTip>
                     <ToolTip Content="Tax Amount"/>
                 </ToolTipService.ToolTip>
@@ -157,25 +160,25 @@
                            VerticalAlignment="Top"
                            Text="Total Amount:"
                            FontSize="24"
-                           Margin="0,20,0,0"/>
+                           Margin="0,10,0,0"/>
 
             <TextBlock Name="totalAmount"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Text="$0.00"
                            Foreground="Red"
-                           FontSize="24"
-                           Margin="0,20,0,0">
+                           FontSize="36"
+                           Margin="0,10,0,0">
                 <ToolTipService.ToolTip>
                     <ToolTip Content="Total Amount after Tax"/>
                 </ToolTipService.ToolTip>
             </TextBlock>
 
-            <StackPanel Name="img" Opacity="1">
-                <Image x:Name="image" Height="100" Width="100" HorizontalAlignment="Center" Source="Assets/taxapp-bg.jpg"/>
-            </StackPanel>
 
         </StackPanel>
+        <Image x:Name="image" Width="50" Height="50" HorizontalAlignment="Center" Source="Assets/Tax.jpg"
+                           Margin="285,139.333,25,337" Grid.Row="2"
+                           />
 
     </Grid>
     <Page.BottomAppBar>

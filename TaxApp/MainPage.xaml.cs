@@ -24,19 +24,22 @@ namespace TaxApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //Tax Class
         Tax tax;
+        //Constant value of the tax 
         string constantText = "0.05";
         string taxAmountInputValue = string.Empty;
 
         public MainPage()
         {
             this.InitializeComponent();
-
+            //initialize an object of Tax class 
             tax = new Tax();
         }
         //Radio Button 
         private void GSTRadioButton_Click(object sender, RoutedEventArgs e)
         {
+            //Radio Button click on all the three Radio button
 
             if (((RadioButton)sender).IsChecked == true)
             {          
@@ -58,7 +61,7 @@ namespace TaxApp
         //LostFocus Event Handler
         private void purchaseAmount_LostFocus(object sender, RoutedEventArgs e)
         {
-            //purchaseAmount.Text = constantText.purchasePrice;
+            //purchaseAmount.Text = constantText.purchaseAmount;
         }
         //Text Changed
         private void purchaseAmount_TextChanged(object sender, TextChangedEventArgs e)
